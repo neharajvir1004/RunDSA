@@ -1,62 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F6F7FB">
+    android:layout_height="match_parent">
 
-    <!-- Laptop Icon -->
-
-    <!-- App Name -->
-    <ImageView
-        android:id="@+id/logoImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/RunDSA"
-        app:layout_constraintBottom_toTopOf="@id/appName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/appName"
+    <LinearLayout
+        android:id="@+id/splashContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RunDSA"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="#1F4C8F"
-        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Tagline -->
-    <TextView
-        android:id="@+id/tagline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Learn DSA Easily"
-        android:textSize="16sp"
-        android:textColor="#4A6FA5"
-        app:layout_constraintTop_toBottomOf="@id/appName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="262dp"
+            android:layout_height="212dp"
+            android:layout_gravity="center"
+            android:src="@drawable/rundsa_logo" />
 
-    <!-- Loading -->
-    <TextView
-        android:id="@+id/loadingText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Loading..."
-        android:textSize="14sp"
-        android:textColor="#9AA6B2"
-        app:layout_constraintTop_toBottomOf="@id/tagline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
