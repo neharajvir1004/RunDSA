@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rundsa.app.R
 import com.rundsa.app.adapters.FeatureAdapter
 import com.rundsa.app.models.FeatureModel
+import android.content.Intent
+import android.widget.ImageButton
+import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
 
@@ -16,10 +20,15 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val username = intent.getStringExtra("USERNAME") ?: "User"
-
         val helloText = findViewById<TextView>(R.id.txtHello)
-        helloText.text = "Hello, $username!"
+
+        // 🔥 UPDATED → reload user to ensure latest data (FIX FOR NAME DELAY)
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.reload()?.addOnCompleteListener {
+
+            val username = user.displayName ?: "User"
+            helloText.text = "Hello, $username!"
+        }
 
         val recycler = findViewById<RecyclerView>(R.id.featureRecycler)
 
@@ -58,5 +67,33 @@ class HomeActivity : AppCompatActivity() {
 
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = FeatureAdapter(featureList)
+
+        // Find logout button
+        val logoutBtn = findViewById<ImageButton>(R.id.logoutBtn)
+
+        // Click listener
+        logoutBtn.setOnClickListener {
+
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setCancelable(false)
+
+                .setPositiveButton("Yes") { _, _ ->
+
+                    FirebaseAuth.getInstance().signOut()
+
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                    startActivity(intent)
+                    finish()
+                }
+
+                .setNegativeButton("No") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
     }
 }
