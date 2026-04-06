@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RunDSA</string>
+    <string name="learn_dsa">Learn DSA</string>
 </resources>
