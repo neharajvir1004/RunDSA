@@ -9,20 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rundsa.app.R
 import com.rundsa.app.models.TopicModel
 
-class TopicAdapter(
+class QuizTopicAdapter(
     private val list: List<TopicModel>,
     private val onItemClick: (TopicModel) -> Unit
-) : RecyclerView.Adapter<TopicAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<QuizTopicAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.textTopic)
         val icon: ImageView = view.findViewById(R.id.iconTopic)
-        val desc: TextView = view.findViewById(R.id.textDesc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_topic, parent, false)
+            .inflate(R.layout.item_topic_quiz, parent, false)
         return ViewHolder(view)
     }
 
@@ -32,7 +31,6 @@ class TopicAdapter(
         val item = list[position]
         holder.title.text = item.title
         holder.icon.setImageResource(item.icon)
-        holder.desc.text = item.desc
 
         holder.itemView.setOnClickListener {
             onItemClick(item)

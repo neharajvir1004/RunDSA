@@ -20,9 +20,6 @@
             android:name=".activities.LearnActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
@@ -53,6 +50,19 @@
         <activity
             android:name=".activities.HomeActivity"
             android:exported="false" />
+        <!-- Quiz Activity -->
+        <activity android:name=".activities.QuizActivity"
+            />
+        <!-- Practice code Activity -->
+        <activity android:name=".activities.activity_practice_code" />
+        <!-- Fun exercise Activity -->
+        <activity android:name=".activities.FunExerciseActivity" />
+        <!-- Quiz Level Activity -->
+        <activity android:name=".activities.QuizLevelActivity" android:exported="false" />
+        <!-- Quiz Question Activity -->
+        <activity android:name=".activities.QuizQuestionActivity" android:exported="false" />
+        <!-- Quiz Result Activity -->
+        <activity android:name=".activities.QuizResultActivity" android:exported="false" />
 
     </application>
 

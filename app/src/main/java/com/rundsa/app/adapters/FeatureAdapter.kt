@@ -10,19 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rundsa.app.R
 import com.rundsa.app.models.FeatureModel
 import com.rundsa.app.activities.LearnActivity
+import com.rundsa.app.activities.QuizActivity
+import com.rundsa.app.activities.activity_practice_code
+import com.rundsa.app.activities.FunExerciseActivity
 
 class FeatureAdapter(private val featureList: List<FeatureModel>) :
     RecyclerView.Adapter<FeatureAdapter.FeatureViewHolder>() {
 
     class FeatureViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
         val title: TextView = view.findViewById(R.id.textFeature)
         val icon: ImageView = view.findViewById(R.id.iconFeature)
         val container: View = view
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeatureViewHolder {
-
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_feature, parent, false)
 
@@ -30,7 +31,6 @@ class FeatureAdapter(private val featureList: List<FeatureModel>) :
     }
 
     override fun onBindViewHolder(holder: FeatureViewHolder, position: Int) {
-
         val feature = featureList[position]
 
         holder.title.text = feature.title
@@ -38,12 +38,19 @@ class FeatureAdapter(private val featureList: List<FeatureModel>) :
         holder.container.setBackgroundResource(feature.gradient)
 
         holder.container.setOnClickListener {
-            if (feature.title == "Learn DSA") {
-                val intent = Intent(holder.itemView.context, LearnActivity::class.java)
-                holder.itemView.context.startActivity(intent)
+            val context = holder.itemView.context
+            val intent = when (feature.title) {
+                "Learn DSA" -> Intent(context, LearnActivity::class.java)
+                "Quizzes" -> Intent(context, QuizActivity::class.java)
+                "Practice Code" -> Intent(context,activity_practice_code ::class.java)
+                "Fun Exercise" -> Intent(context, FunExerciseActivity::class.java)
+                else -> null
+            }
+
+            intent?.let {
+                context.startActivity(it)
             }
         }
-
     }
 
     override fun getItemCount(): Int {

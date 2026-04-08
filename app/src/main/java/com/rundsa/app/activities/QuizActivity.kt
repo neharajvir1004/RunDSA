@@ -3,17 +3,14 @@ package com.rundsa.app.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rundsa.app.R
-import com.rundsa.app.adapters.TopicAdapter
+import com.rundsa.app.adapters.QuizTopicAdapter
 import com.rundsa.app.models.TopicModel
 
-class LearnActivity : AppCompatActivity() {
+class QuizActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +18,6 @@ class LearnActivity : AppCompatActivity() {
 
         val recycler = findViewById<RecyclerView>(R.id.topicRecycler)
         recycler.layoutManager = LinearLayoutManager(this)
-
-        recycler.isVerticalScrollBarEnabled = true
 
         val list = listOf(
             TopicModel("Arrays", R.drawable.ic_array, "Basics, introduction and more"),
@@ -37,10 +32,8 @@ class LearnActivity : AppCompatActivity() {
             TopicModel("Dynamic Programming", R.drawable.ic_dp, "Optimization technique")
         )
 
-        println(list.size)
-
-        recycler.adapter = TopicAdapter(list) { item ->
-            val intent = Intent(this, DetailActivity::class.java)
+        recycler.adapter = QuizTopicAdapter(list) { item ->
+            val intent = Intent(this, QuizLevelActivity::class.java)
             intent.putExtra("TOPIC", item.title)
             startActivity(intent)
         }
