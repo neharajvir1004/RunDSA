@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="16dp"
     app:cardElevation="6dp"
-    app:cardBackgroundColor="#1E293B">
+    app:cardBackgroundColor="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Arrays"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -43,9 +43,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Basics, introduction and more"
-                android:textColor="#CBD5E1"
+                android:text="Basics,Introduction and more"
+                android:textColor="@android:color/black"
                 android:textSize="13sp" />
+
         </LinearLayout>
 
     </LinearLayout>

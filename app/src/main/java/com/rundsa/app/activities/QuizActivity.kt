@@ -3,6 +3,7 @@ package com.rundsa.app.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +17,12 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn)
 
+        val titleText = findViewById<TextView>(R.id.titleText)
+        titleText.text = "Crack The Quiz"
+
         val recycler = findViewById<RecyclerView>(R.id.topicRecycler)
         recycler.layoutManager = LinearLayoutManager(this)
+        recycler.isVerticalScrollBarEnabled = true
 
         val list = listOf(
             TopicModel("Arrays", R.drawable.ic_array, "Basics, introduction and more"),

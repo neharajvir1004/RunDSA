@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F4F6F8">
+    android:background="@color/white">
 
-    <!-- HEADER -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -18,22 +17,22 @@
             android:id="@+id/backBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow"
-            android:rotation="180"
             android:layout_centerVertical="true"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow" />
 
         <TextView
+            android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/learn_dsa"
+            android:layout_centerInParent="true"
+            android:text="Learn DSA"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true" />
+            android:textStyle="bold" />
     </RelativeLayout>
 
-    <!-- RECYCLER VIEW -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,9 +41,9 @@
             android:id="@+id/topicRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
             android:clipToPadding="false"
-            tools:listitem="@layout/item_topic"/>
+            android:padding="16dp"
+            tools:listitem="@layout/item_topic_quiz" />
 
     </FrameLayout>
 

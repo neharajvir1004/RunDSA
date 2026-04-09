@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F4F6F8">
+    android:background="@color/white">
 
     <!-- HEADER -->
     <RelativeLayout
@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Crack The Quiz"
+            android:id="@+id/titleText"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -44,7 +45,7 @@
             android:layout_height="match_parent"
             android:padding="16dp"
             android:clipToPadding="false"
-            tools:listitem="@layout/item_topic"/>
+            tools:listitem="@layout/item_topic_quiz"/>
 
     </FrameLayout>
 
