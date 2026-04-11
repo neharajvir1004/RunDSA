@@ -13,6 +13,7 @@ import com.rundsa.app.activities.LearnActivity
 import com.rundsa.app.activities.QuizActivity
 import com.rundsa.app.activities.activity_practice_code
 import com.rundsa.app.activities.FunExerciseActivity
+import com.rundsa.app.activities.ProgressActivity   // 🔥 ADD THIS
 
 class FeatureAdapter(private val featureList: List<FeatureModel>) :
     RecyclerView.Adapter<FeatureAdapter.FeatureViewHolder>() {
@@ -39,11 +40,15 @@ class FeatureAdapter(private val featureList: List<FeatureModel>) :
 
         holder.container.setOnClickListener {
             val context = holder.itemView.context
+
             val intent = when (feature.title) {
                 "Learn DSA" -> Intent(context, LearnActivity::class.java)
                 "Quizzes" -> Intent(context, QuizActivity::class.java)
-                "Practice Code" -> Intent(context,activity_practice_code ::class.java)
+                "Practice Code" -> Intent(context, activity_practice_code::class.java)
                 "Fun Exercise" -> Intent(context, FunExerciseActivity::class.java)
+
+                "Progress" -> Intent(context, ProgressActivity::class.java) // 🔥 ADD THIS
+
                 else -> null
             }
 

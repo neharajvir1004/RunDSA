@@ -18,11 +18,12 @@
 
         <!-- Logo -->
         <ImageView
-            android:id="@+id/logoImage"
-            android:layout_width="262dp"
-            android:layout_height="212dp"
+            android:id="@+id/logo"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
-            android:src="@drawable/rundsa_logo" />
+            android:scaleType="fitCenter"/>
 
     </LinearLayout>
 

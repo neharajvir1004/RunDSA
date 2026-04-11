@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.rundsa.app">
+
+    <!--Required for firebase-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -10,21 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RunDSA">
 
-        <!-- Splash Screen (Launcher Activity) -->
-        android:theme="@style/Theme.RunDSA"
-        tools:targetApi="31">
-        <activity
-            android:name=".activities.DetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LearnActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LoginActivity"
-            android:exported="false" />
+        <!-- Splash Screen (Launcher) -->
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">
@@ -36,33 +26,66 @@
 
         </activity>
 
-        <!-- Login Activity -->
+        <!-- Login -->
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false" />
 
-        <!-- Register Activity (✅ ADDED) -->
+        <!-- Register -->
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
 
-        <!-- Home Activity -->
+        <!-- Home -->
         <activity
             android:name=".activities.HomeActivity"
             android:exported="false" />
-        <!-- Quiz Activity -->
-        <activity android:name=".activities.QuizActivity"
-            />
-        <!-- Practice code Activity -->
-        <activity android:name=".activities.activity_practice_code" />
-        <!-- Fun exercise Activity -->
-        <activity android:name=".activities.FunExerciseActivity" />
-        <!-- Quiz Level Activity -->
-        <activity android:name=".activities.QuizLevelActivity" android:exported="false" />
-        <!-- Quiz Question Activity -->
-        <activity android:name=".activities.QuizQuestionActivity" android:exported="false" />
-        <!-- Quiz Result Activity -->
-        <activity android:name=".activities.QuizResultActivity" android:exported="false" />
+
+        <!-- Learn -->
+        <activity
+            android:name=".activities.LearnActivity"
+            android:exported="false" />
+
+        <!-- Detail -->
+        <activity
+            android:name=".activities.DetailActivity"
+            android:exported="false" />
+
+        <!-- Quiz -->
+        <activity
+            android:name=".activities.QuizActivity"
+            android:exported="false" />
+
+        <!-- Quiz Level -->
+        <activity
+            android:name=".activities.QuizLevelActivity"
+            android:exported="false" />
+
+        <!-- Quiz Question -->
+        <activity
+            android:name=".activities.QuizQuestionActivity"
+            android:exported="false" />
+
+        <!-- Quiz Result -->
+        <activity
+            android:name=".activities.QuizResultActivity"
+            android:exported="false" />
+
+        <!-- Practice (IMPORTANT FIX) -->
+        <activity
+            android:name=".activities.activity_practice_code"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+
+        <!-- Fun Exercise -->
+        <activity
+            android:name=".activities.FunExerciseActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+
+        <!-- Progress -->
+        <activity android:name=".activities.ProgressActivity"
+            android:exported="false" />
 
     </application>
 
