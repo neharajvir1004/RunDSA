@@ -11,9 +11,9 @@ import com.rundsa.app.R
 import com.rundsa.app.models.FeatureModel
 import com.rundsa.app.activities.LearnActivity
 import com.rundsa.app.activities.QuizActivity
-import com.rundsa.app.activities.activity_practice_code
 import com.rundsa.app.activities.FunExerciseActivity
 import com.rundsa.app.activities.ProgressActivity   // 🔥 ADD THIS
+import com.rundsa.app.activities.PracticeCodeActivity
 
 class FeatureAdapter(private val featureList: List<FeatureModel>) :
     RecyclerView.Adapter<FeatureAdapter.FeatureViewHolder>() {
@@ -45,6 +45,7 @@ class FeatureAdapter(private val featureList: List<FeatureModel>) :
                 "Learn DSA" -> Intent(context, LearnActivity::class.java)
                 "Quizzes" -> Intent(context, QuizActivity::class.java)
                 "Practice Code" -> Intent(context, activity_practice_code::class.java)
+                "Practice Code" -> Intent(context, PracticeCodeActivity::class.java)
                 "Fun Exercise" -> Intent(context, FunExerciseActivity::class.java)
 
                 "Progress" -> Intent(context, ProgressActivity::class.java) // 🔥 ADD THIS

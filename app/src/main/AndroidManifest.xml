@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rundsa.app">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!--Required for firebase-->
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -15,18 +17,23 @@
         android:theme="@style/Theme.RunDSA">
 
         <!-- Splash Screen (Launcher) -->
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.RunDSA"
+        tools:targetApi="31">
+        android:theme="@style/Theme.RunDSA"
+        tools:targetApi="31">
+        <!-- Splash Screen -->
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <!-- Login -->
+        <!-- Auth -->
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false" />
@@ -36,6 +43,7 @@
             android:name=".activities.RegisterActivity"
             android:exported="false" />
 
+        <!-- Main app -->
         <!-- Home -->
         <activity
             android:name=".activities.HomeActivity"
@@ -86,7 +94,47 @@
         <!-- Progress -->
         <activity android:name=".activities.ProgressActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.LearnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailActivity"
+            android:exported="false" />
 
+        <!-- Quiz -->
+        <activity
+            android:name=".activities.QuizActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.QuizLevelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.QuizQuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.QuizResultActivity"
+            android:exported="false" />
+
+        <!-- Fun Exercise -->
+        <activity
+            android:name=".activities.FunExerciseActivity"
+            android:exported="false" />
+
+        <!-- Practice Code -->
+        <activity
+            android:name=".activities.PracticeCodeActivity"
+            android:exported="false" />
+
+
+
+        <!--- Practise code -->
+        <activity
+            android:name=".activities.PracticeDetailActivity"
+            android:exported="false" />
+        <!-- Compiler -->
+        <activity
+            android:name=".activities.CompilerActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
