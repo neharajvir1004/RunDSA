@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rundsa.app">
 
+    <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!--Required for firebase-->
-    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -14,15 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.RunDSA">
 
         <!-- Splash Screen (Launcher) -->
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.RunDSA"
-        tools:targetApi="31">
-        android:theme="@style/Theme.RunDSA"
-        tools:targetApi="31">
-        <!-- Splash Screen -->
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">
@@ -32,109 +25,37 @@
             </intent-filter>
         </activity>
 
-        <!-- Login -->
         <!-- Auth -->
-        <activity
-            android:name=".activities.LoginActivity"
-            android:exported="false" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegisterActivity" />
 
-        <!-- Register -->
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="false" />
+        <!-- Main -->
+        <activity android:name=".activities.HomeActivity" />
 
-        <!-- Main app -->
-        <!-- Home -->
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="false" />
-
-        <!-- Learn -->
-        <activity
-            android:name=".activities.LearnActivity"
-            android:exported="false" />
-
-        <!-- Detail -->
-        <activity
-            android:name=".activities.DetailActivity"
-            android:exported="false" />
+        <!-- Learning -->
+        <activity android:name=".activities.LearnActivity" />
+        <activity android:name=".activities.DetailActivity" />
 
         <!-- Quiz -->
-        <activity
-            android:name=".activities.QuizActivity"
-            android:exported="false" />
+        <activity android:name=".activities.QuizActivity" />
+        <activity android:name=".activities.QuizLevelActivity" />
+        <activity android:name=".activities.QuizQuestionActivity" />
+        <activity android:name=".activities.QuizResultActivity" />
 
-        <!-- Quiz Level -->
-        <activity
-            android:name=".activities.QuizLevelActivity"
-            android:exported="false" />
+        <!-- Practice -->
+        <activity android:name=".activities.PracticeCodeActivity" />
+        <activity android:name=".activities.PracticeDetailActivity" />
 
-        <!-- Quiz Question -->
-        <activity
-            android:name=".activities.QuizQuestionActivity"
-            android:exported="false" />
-
-        <!-- Quiz Result -->
-        <activity
-            android:name=".activities.QuizResultActivity"
-            android:exported="false" />
-
-        <!-- Practice (IMPORTANT FIX) -->
-        <activity
-            android:name=".activities.activity_practice_code"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
-
-        <!-- Fun Exercise -->
-        <activity
-            android:name=".activities.FunExerciseActivity"
-            android:exported="false"
+        <!-- Fun -->
+        <activity android:name=".activities.FunExerciseActivity"
             tools:ignore="Instantiatable" />
 
         <!-- Progress -->
-        <activity android:name=".activities.ProgressActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LearnActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.DetailActivity"
-            android:exported="false" />
+        <activity android:name=".activities.ProgressActivity" />
 
-        <!-- Quiz -->
-        <activity
-            android:name=".activities.QuizActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.QuizLevelActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.QuizQuestionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.QuizResultActivity"
-            android:exported="false" />
-
-        <!-- Fun Exercise -->
-        <activity
-            android:name=".activities.FunExerciseActivity"
-            android:exported="false" />
-
-        <!-- Practice Code -->
-        <activity
-            android:name=".activities.PracticeCodeActivity"
-            android:exported="false" />
-
-
-
-        <!--- Practise code -->
-        <activity
-            android:name=".activities.PracticeDetailActivity"
-            android:exported="false" />
         <!-- Compiler -->
-        <activity
-            android:name=".activities.CompilerActivity"
-            android:exported="false" />
+        <activity android:name=".activities.CompilerActivity" />
+
     </application>
 
 </manifest>
