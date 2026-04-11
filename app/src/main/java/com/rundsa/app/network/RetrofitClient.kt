@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://10.43.200.250:3000/"
+    private const val BASE_URL = "https://rundsa-backend.onrender.com/"
 
     val api: CompilerApi by lazy {
         Retrofit.Builder()

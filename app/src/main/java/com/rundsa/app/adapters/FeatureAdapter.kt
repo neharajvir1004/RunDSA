@@ -44,7 +44,6 @@ class FeatureAdapter(private val featureList: List<FeatureModel>) :
             val intent = when (feature.title) {
                 "Learn DSA" -> Intent(context, LearnActivity::class.java)
                 "Quizzes" -> Intent(context, QuizActivity::class.java)
-                "Practice Code" -> Intent(context, activity_practice_code::class.java)
                 "Practice Code" -> Intent(context, PracticeCodeActivity::class.java)
                 "Fun Exercise" -> Intent(context, FunExerciseActivity::class.java)
 

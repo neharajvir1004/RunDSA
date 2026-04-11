@@ -20,13 +20,17 @@ class PracticeDetailActivity : AppCompatActivity() {
         val btnRun = findViewById<Button>(R.id.btnRun)
         val backBtn = findViewById<ImageView>(R.id.backBtn)
 
+        // Get data from previous screen
         val title = intent.getStringExtra("TITLE") ?: "Practice"
         val code = intent.getStringExtra("CODE") ?: "No code available"
         val output = intent.getStringExtra("OUTPUT") ?: "No output"
 
+        // Set UI
         titleText.text = title
         tvCode.text = code
+        tvOutput.visibility = View.GONE   // Hide initially
 
+        // Run button → show STATIC output
         btnRun.setOnClickListener {
             tvOutput.visibility = View.VISIBLE
             tvOutput.text = output

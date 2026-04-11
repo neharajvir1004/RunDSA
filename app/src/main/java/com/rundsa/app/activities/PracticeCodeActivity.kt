@@ -29,88 +29,138 @@ class PracticeCodeActivity : AppCompatActivity() {
         recycler.isVerticalScrollBarEnabled = true
 
         val list = listOf(
-            PracticeTopicModel(
-                "Arrays",
-                R.drawable.ic_array,
-                "Basic array print example",
-                """
-                #include <stdio.h>
 
-                int main() {
-                    int arr[] = {10, 20, 30, 40, 50};
-                    int i;
-                    for(i = 0; i < 5; i++) {
-                        printf("%d ", arr[i]);
-                    }
-                    return 0;
-                }
-                """.trimIndent(),
-                "10 20 30 40 50"
+            PracticeTopicModel("Arrays", R.drawable.ic_array, "Basic array",
+                """
+        #include <stdio.h>
+        int main() {
+            int arr[] = {1,2,3,4,5};
+            for(int i=0;i<5;i++) printf("%d ", arr[i]);
+            return 0;
+        }
+        """.trimIndent(),
+                "1 2 3 4 5"
             ),
-            PracticeTopicModel(
-                "Searching",
-                R.drawable.ic_search,
-                "Linear search example",
+
+            PracticeTopicModel("Linked List", R.drawable.ic_linked, "Simple linked list",
                 """
-                #include <stdio.h>
-
-                int main() {
-                    int arr[] = {5, 8, 12, 20, 25};
-                    int key = 12;
-                    int i, found = 0;
-
-                    for(i = 0; i < 5; i++) {
-                        if(arr[i] == key) {
-                            printf("Element found at index: %d", i);
-                            found = 1;
-                            break;
-                        }
-                    }
-
-                    if(found == 0) {
-                        printf("Element not found");
-                    }
-
-                    return 0;
-                }
-                """.trimIndent(),
-                "Element found at index: 2"
+        #include <stdio.h>
+        struct node {
+            int data;
+            struct node* next;
+        };
+        int main(){
+            struct node n1, n2;
+            n1.data=10;
+            n2.data=20;
+            n1.next=&n2;
+            printf("%d %d", n1.data, n1.next->data);
+        }
+        """.trimIndent(),
+                "10 20"
             ),
-            PracticeTopicModel(
-                "Stack",
-                R.drawable.ic_stack,
-                "Simple stack example",
+
+            PracticeTopicModel("Stack", R.drawable.ic_stack, "Stack example",
                 """
-                #include <stdio.h>
-
-                int main() {
-                    int stack[3] = {10, 20, 30};
-
-                    printf("Top element: %d\n", stack[2]);
-                    printf("Stack elements: 10 20 30");
-
-                    return 0;
-                }
-                """.trimIndent(),
-                "Top element: 30\nStack elements: 10 20 30"
+        #include <stdio.h>
+        int main() {
+            int stack[3]={10,20,30};
+            printf("Top: %d", stack[2]);
+        }
+        """.trimIndent(),
+                "Top: 30"
             ),
-            PracticeTopicModel(
-                "Queue",
-                R.drawable.ic_queue,
-                "Simple queue example",
+
+            PracticeTopicModel("Queue", R.drawable.ic_queue, "Queue example",
                 """
-                #include <stdio.h>
+        #include <stdio.h>
+        int main() {
+            int q[3]={10,20,30};
+            printf("Front: %d", q[0]);
+        }
+        """.trimIndent(),
+                "Front: 10"
+            ),
 
-                int main() {
-                    int queue[3] = {10, 20, 30};
+            PracticeTopicModel("Recursion", R.drawable.ic_recursion, "Factorial",
+                """
+        #include <stdio.h>
+        int fact(int n){
+            if(n==0) return 1;
+            return n*fact(n-1);
+        }
+        int main(){
+            printf("%d", fact(5));
+        }
+        """.trimIndent(),
+                "120"
+            ),
 
-                    printf("Front element: %d\n", queue[0]);
-                    printf("Queue elements: 10 20 30");
+            PracticeTopicModel("Sorting", R.drawable.ic_sort, "Bubble Sort",
+                """
+        #include <stdio.h>
+        int main(){
+            int arr[]={5,2,9,1};
+            for(int i=0;i<4;i++)
+                for(int j=0;j<3;j++)
+                    if(arr[j]>arr[j+1]){
+                        int t=arr[j];
+                        arr[j]=arr[j+1];
+                        arr[j+1]=t;
+                    }
+            for(int i=0;i<4;i++) printf("%d ",arr[i]);
+        }
+        """.trimIndent(),
+                "1 2 5 9"
+            ),
 
+            PracticeTopicModel("Searching", R.drawable.ic_search, "Linear search",
+                """
+        #include <stdio.h>
+        int main(){
+            int arr[]={1,2,3,4,5}, key=3;
+            for(int i=0;i<5;i++){
+                if(arr[i]==key){
+                    printf("Found at %d", i);
                     return 0;
                 }
-                """.trimIndent(),
-                "Front element: 10\nQueue elements: 10 20 30"
+            }
+        }
+        """.trimIndent(),
+                "Found at 2"
+            ),
+
+            PracticeTopicModel("Trees", R.drawable.ic_tree, "Tree concept",
+                """
+        #include <stdio.h>
+        int main(){
+            printf("Root -> Left -> Right");
+        }
+        """.trimIndent(),
+                "Root -> Left -> Right"
+            ),
+
+            PracticeTopicModel("Graphs", R.drawable.ic_graph, "Graph concept",
+                """
+        #include <stdio.h>
+        int main(){
+            printf("Graph = Nodes + Edges");
+        }
+        """.trimIndent(),
+                "Graph = Nodes + Edges"
+            ),
+
+            PracticeTopicModel("Dynamic Programming", R.drawable.ic_dp, "Fibonacci DP",
+                """
+        #include <stdio.h>
+        int main(){
+            int dp[5]={0,1};
+            for(int i=2;i<5;i++)
+                dp[i]=dp[i-1]+dp[i-2];
+            for(int i=0;i<5;i++) printf("%d ",dp[i]);
+        }
+        """.trimIndent(),
+                "0 1 1 2 3"
             )
         )
 
