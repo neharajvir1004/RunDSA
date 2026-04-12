@@ -29,6 +29,8 @@ class TopicDetailActivity : AppCompatActivity() {
     private lateinit var rvSubtypes: RecyclerView
 
     private var selectedCode: String = ""
+    private var selectedSubtypeName: String = ""
+    private var currentTopicName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +46,8 @@ class TopicDetailActivity : AppCompatActivity() {
         tvSubtypeHeading = findViewById(R.id.tvSubtypeHeading)
         rvSubtypes = findViewById(R.id.rvSubtypes)
 
-        val topicName = intent.getStringExtra("TOPIC") ?: "Stack"
-        val topic = getTopicData(topicName)
+        currentTopicName = intent.getStringExtra("TOPIC") ?: "Stack"
+        val topic = getTopicData(currentTopicName)
 
         tvTopicTitle.text = topic.title
         tvDefinition.text = topic.definition
@@ -60,16 +62,19 @@ class TopicDetailActivity : AppCompatActivity() {
             }
 
             selectedCode = ""
+            selectedSubtypeName = ""
             tvCode.text = "Select any Type to try that code and view output of that code."
 
             rvSubtypes.layoutManager = LinearLayoutManager(this)
             rvSubtypes.adapter = SubtypeAdapter(topic.subtypes) { selectedSubtype ->
                 selectedCode = selectedSubtype.code
+                selectedSubtypeName = selectedSubtype.name
                 tvCode.text = selectedSubtype.code
             }
         } else {
             layoutSubtypeSection.visibility = View.GONE
             selectedCode = topic.code
+            selectedSubtypeName = ""
             tvCode.text = topic.code
         }
 
@@ -82,7 +87,8 @@ class TopicDetailActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please select a type first", Toast.LENGTH_SHORT).show()
             } else {
                 val intent = Intent(this, PracticeCodeActivity::class.java)
-                intent.putExtra("CODE", selectedCode)
+                intent.putExtra("TOPIC", currentTopicName)
+                intent.putExtra("SUBTYPE", selectedSubtypeName)
                 startActivity(intent)
             }
         }
@@ -258,173 +264,22 @@ int main() {
 #include <stdio.h>
 
 int main() {
-    int arr[5] = {4, 2, 7, 1, 3};
-    int i, j, min, temp;
+    int arr[5] = {64, 25, 12, 22, 11};
+    int i, j, min_idx, temp;
 
-    for(i = 0; i < 4; i++) {
-        min = i;
-        for(j = i + 1; j < 5; j++) {
-            if(arr[j] < arr[min]) {
-                min = j;
+    for (i = 0; i < 4; i++) {
+        min_idx = i;
+        for (j = i + 1; j < 5; j++) {
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;
             }
         }
-        temp = arr[i];
-        arr[i] = arr[min];
-        arr[min] = temp;
+        temp = arr[min_idx];
+        arr[min_idx] = arr[i];
+        arr[i] = temp;
     }
 
-    for(i = 0; i < 5; i++) {
-        printf("%d ", arr[i]);
-    }
-
-    return 0;
-}
-                        """.trimIndent()
-                    ),
-                    SubtypeModel(
-                        name = "Insertion Sort",
-                        definition = "Insertion sort takes one element at a time and inserts it into its correct position.",
-                        code = """
-#include <stdio.h>
-
-int main() {
-    int arr[5] = {5, 2, 4, 1, 3};
-    int i, j, key;
-
-    for(i = 1; i < 5; i++) {
-        key = arr[i];
-        j = i - 1;
-
-        while(j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-
-        arr[j + 1] = key;
-    }
-
-    for(i = 0; i < 5; i++) {
-        printf("%d ", arr[i]);
-    }
-
-    return 0;
-}
-                        """.trimIndent()
-                    ),
-                    SubtypeModel(
-                        name = "Merge Sort",
-                        definition = "Merge sort divides the array into smaller parts, sorts them, and then merges them. Simple idea: Divide -> Sort -> Merge.",
-                        code = """
-#include <stdio.h>
-
-void merge(int arr[], int left, int mid, int right) {
-    int i, j, k;
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    int L[50], R[50];
-
-    for(i = 0; i < n1; i++)
-        L[i] = arr[left + i];
-    for(j = 0; j < n2; j++)
-        R[j] = arr[mid + 1 + j];
-
-    i = 0;
-    j = 0;
-    k = left;
-
-    while(i < n1 && j < n2) {
-        if(L[i] <= R[j]) {
-            arr[k] = L[i];
-            i++;
-        } else {
-            arr[k] = R[j];
-            j++;
-        }
-        k++;
-    }
-
-    while(i < n1) {
-        arr[k] = L[i];
-        i++;
-        k++;
-    }
-
-    while(j < n2) {
-        arr[k] = R[j];
-        j++;
-        k++;
-    }
-}
-
-void mergeSort(int arr[], int left, int right) {
-    if(left < right) {
-        int mid = (left + right) / 2;
-
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-
-        merge(arr, left, mid, right);
-    }
-}
-
-int main() {
-    int arr[5] = {5, 2, 4, 1, 3};
-    int i;
-
-    mergeSort(arr, 0, 4);
-
-    for(i = 0; i < 5; i++) {
-        printf("%d ", arr[i]);
-    }
-
-    return 0;
-}
-                        """.trimIndent()
-                    ),
-                    SubtypeModel(
-                        name = "Quick Sort",
-                        definition = "Quick sort selects a pivot element and places smaller elements on one side and larger elements on the other side.",
-                        code = """
-#include <stdio.h>
-
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
-    int j, temp;
-
-    for(j = low; j < high; j++) {
-        if(arr[j] < pivot) {
-            i++;
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-    }
-
-    temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
-
-    return i + 1;
-}
-
-void quickSort(int arr[], int low, int high) {
-    if(low < high) {
-        int pi = partition(arr, low, high);
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
-
-int main() {
-    int arr[5] = {5, 2, 4, 1, 3};
-    int i;
-
-    quickSort(arr, 0, 4);
-
-    for(i = 0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         printf("%d ", arr[i]);
     }
 
@@ -437,25 +292,30 @@ int main() {
 
             "Searching" -> TopicDetailModel(
                 title = "Searching",
-                definition = "Searching means finding a specific element in a collection of data.",
-                example = "Finding number 20 in an array.",
+                definition = "Searching is used to find an element in a data structure.",
+                example = "Finding 10 in a list.",
                 code = "",
                 subtypes = listOf(
                     SubtypeModel(
                         name = "Linear Search",
-                        definition = "Checks each element one by one.",
+                        definition = "Linear search checks elements one by one.",
                         code = """
 #include <stdio.h>
 
 int main() {
-    int arr[5] = {10, 20, 30, 40, 50};
-    int i, key = 30;
+    int arr[5] = {4, 8, 1, 9, 3};
+    int key = 9, i, found = 0;
 
     for(i = 0; i < 5; i++) {
         if(arr[i] == key) {
-            printf("Element found at position %d", i);
+            printf("Element found at position %d", i + 1);
+            found = 1;
             break;
         }
+    }
+
+    if(!found) {
+        printf("Element not found");
     }
 
     return 0;
@@ -464,29 +324,28 @@ int main() {
                     ),
                     SubtypeModel(
                         name = "Binary Search",
-                        definition = "Binary search works only on sorted arrays and checks the middle element first.",
+                        definition = "Binary search works on sorted arrays by dividing the search space into halves.",
                         code = """
 #include <stdio.h>
 
 int main() {
-    int arr[5] = {10, 20, 30, 40, 50};
-    int low = 0, high = 4, mid, key = 40;
+    int arr[5] = {1, 3, 5, 7, 9};
+    int key = 7, low = 0, high = 4, mid;
 
     while(low <= high) {
         mid = (low + high) / 2;
 
         if(arr[mid] == key) {
-            printf("Element found at position %d", mid);
-            break;
-        }
-        else if(arr[mid] < key) {
+            printf("Element found at position %d", mid + 1);
+            return 0;
+        } else if(arr[mid] < key) {
             low = mid + 1;
-        }
-        else {
+        } else {
             high = mid - 1;
         }
     }
 
+    printf("Element not found");
     return 0;
 }
                         """.trimIndent()
@@ -496,36 +355,13 @@ int main() {
 
             "Trees" -> TopicDetailModel(
                 title = "Trees",
-                definition = "A tree is a hierarchical data structure made of nodes connected by edges.",
-                example = "Family tree or folder structure in a computer.",
+                definition = "A tree is a hierarchical data structure with nodes connected by edges.",
+                example = "Root, left child, right child.",
                 code = """
 #include <stdio.h>
-#include <stdlib.h>
-
-struct Node {
-    int data;
-    struct Node* left;
-    struct Node* right;
-};
 
 int main() {
-    struct Node* root = (struct Node*)malloc(sizeof(struct Node));
-    root->data = 10;
-
-    root->left = (struct Node*)malloc(sizeof(struct Node));
-    root->left->data = 5;
-    root->left->left = NULL;
-    root->left->right = NULL;
-
-    root->right = (struct Node*)malloc(sizeof(struct Node));
-    root->right->data = 20;
-    root->right->left = NULL;
-    root->right->right = NULL;
-
-    printf("Root: %d\n", root->data);
-    printf("Left Child: %d\n", root->left->data);
-    printf("Right Child: %d\n", root->right->data);
-
+    printf("Root -> Left Child -> Right Child");
     return 0;
 }
                 """.trimIndent()
@@ -533,21 +369,13 @@ int main() {
 
             "Graphs" -> TopicDetailModel(
                 title = "Graphs",
-                definition = "A graph is a non-linear data structure made of vertices (nodes) and edges (connections).",
+                definition = "A graph is a non-linear data structure made of nodes and edges.",
                 example = "Cities connected by roads.",
                 code = """
 #include <stdio.h>
 
 int main() {
-    int graph[3][3] = {
-        {0, 1, 1},
-        {1, 0, 1},
-        {1, 1, 0}
-    };
-
-    printf("Connection between 0 and 1: %d\n", graph[0][1]);
-    printf("Connection between 1 and 2: %d\n", graph[1][2]);
-
+    printf("Graph = Vertices + Edges");
     return 0;
 }
                 """.trimIndent()
@@ -555,24 +383,24 @@ int main() {
 
             "Dynamic Programming" -> TopicDetailModel(
                 title = "Dynamic Programming",
-                definition = "Dynamic programming is a method used to solve problems by breaking them into smaller subproblems and storing their answers to avoid repeated work.",
-                example = "Fibonacci series.",
+                definition = "Dynamic programming solves problems by storing results of smaller subproblems.",
+                example = "Fibonacci using DP.",
                 code = """
 #include <stdio.h>
 
 int main() {
     int n = 6;
-    int dp[10];
-    int i;
-
+    int dp[6];
     dp[0] = 0;
     dp[1] = 1;
 
-    for(i = 2; i <= n; i++) {
+    for(int i = 2; i < n; i++) {
         dp[i] = dp[i - 1] + dp[i - 2];
     }
 
-    printf("Fibonacci of %d is %d", n, dp[n]);
+    for(int i = 0; i < n; i++) {
+        printf("%d ", dp[i]);
+    }
 
     return 0;
 }
@@ -581,27 +409,12 @@ int main() {
 
             else -> TopicDetailModel(
                 title = "Stack",
-                definition = "A stack is a linear data structure that follows LIFO (Last In First Out).",
+                definition = "A stack is a linear data structure that follows LIFO.",
                 example = "Stack of plates.",
                 code = """
 #include <stdio.h>
-
 int main() {
-    int stack[5];
-    int top = -1;
-
-    top++;
-    stack[top] = 10;
-
-    top++;
-    stack[top] = 20;
-
-    printf("Top element before pop: %d\n", stack[top]);
-
-    top--;
-
-    printf("Top after pop: %d\n", stack[top]);
-
+    printf("Stack Example");
     return 0;
 }
                 """.trimIndent()

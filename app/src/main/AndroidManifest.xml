@@ -37,9 +37,17 @@
         <activity android:name=".activities.PracticeDetailActivity" /> <!-- Fun -->
         <activity
             android:name=".activities.FunExerciseActivity"
-            tools:ignore="Instantiatable" /> <!-- Progress -->
-        <activity android:name=".activities.ProgressActivity" /> <!-- Compiler -->
+            tools:ignore="Instantiatable" />
+        <!-- Progress -->
+        <activity android:name=".activities.ProgressActivity" />
+        <!-- Compiler -->
         <activity android:name=".activities.CompilerActivity" />
+        <!--Sorting Game-->
+        <activity android:name=".activities.SortingGameActivity" />
+        <!-- Binary Search Hunt -->
+        <activity android:name=".activities.BinarySearchGameActivity" />
+        <!-- DSA Challenge -->
+        <activity android:name=".activities.DsaChallengeActivity" />
     </application>
 
 </manifest>
