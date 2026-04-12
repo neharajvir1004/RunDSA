@@ -46,8 +46,8 @@
         <activity android:name=".activities.SortingGameActivity" />
         <!-- Binary Search Hunt -->
         <activity android:name=".activities.BinarySearchGameActivity" />
-        <!-- DSA Challenge -->
-        <activity android:name=".activities.DsaChallengeActivity" />
+        <!-- Memory Game -->
+        <activity android:name=".activities.MemoryGameActivity"/>
     </application>
 
 </manifest>

@@ -1,54 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:background="#FFFFFF">
+    android:background="#F5F7FF">
 
-    <TextView
-        android:id="@+id/tvGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#111827" />
-
-    <TextView
-        android:id="@+id/tvNumbers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        android:textColor="#2563EB" />
-
-    <Button
-        android:id="@+id/btnSwap1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Swap 1st and 2nd"
-        android:layout_marginTop="24dp" />
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/btnSwap2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Swap 2nd and 3rd"
-        android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sorting Game"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#111827"
+            android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/btnCheck"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Check Answer"
-        android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/tvGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort the numbers in ascending order"
+            android:textSize="15sp"
+            android:textColor="#6B7280"
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/btnReset"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reset"
-        android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/tvMoves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moves: 0"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1E3A8A"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:id="@+id/tvNum1"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_num_pink" />
+
+            <TextView
+                android:id="@+id/tvNum2"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_num_purple" />
+
+            <TextView
+                android:id="@+id/tvNum3"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_num_blue" />
+
+            <TextView
+                android:id="@+id/tvNum4"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_num_green" />
+
+            <TextView
+                android:id="@+id/tvNum5"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_num_orange" />
+        </LinearLayout>
+
+        <!-- Swap 1 -->
+        <Button
+            android:id="@+id/btnSwap1"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="#2563EB"
+            android:text="Swap 1 ↔ 2"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Swap 2 -->
+        <Button
+            android:id="@+id/btnSwap2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#7C3AED"
+            android:text="Swap 2 ↔ 3"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Swap 3 -->
+        <Button
+            android:id="@+id/btnSwap3"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#DB2777"
+            android:text="Swap 3 ↔ 4"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Swap 4 -->
+        <Button
+            android:id="@+id/btnSwap4"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#0D9488"
+            android:text="Swap 4 ↔ 5"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Check Button -->
+        <Button
+            android:id="@+id/btnCheck"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#16A34A"
+            android:text="Check Answer"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Reset Button -->
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#EA580C"
+            android:text="Reset Game"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>
