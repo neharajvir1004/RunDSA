@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.rundsa.app.activities.TopicDetailActivity
 import com.rundsa.app.R
 import com.rundsa.app.adapters.TopicAdapter
 import com.rundsa.app.models.TopicModel
@@ -40,7 +41,7 @@ class LearnActivity : AppCompatActivity() {
         println(list.size)
 
         recycler.adapter = TopicAdapter(list) { item ->
-            val intent = Intent(this, DetailActivity::class.java)
+            val intent = Intent(this, TopicDetailActivity::class.java)
             intent.putExtra("TOPIC", item.title)
             startActivity(intent)
         }
