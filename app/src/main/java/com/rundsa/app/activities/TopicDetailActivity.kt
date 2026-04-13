@@ -51,7 +51,6 @@ class TopicDetailActivity : AppCompatActivity() {
         rvSubtypes = findViewById(R.id.rvSubtypes)
 
         currentTopicName = intent.getStringExtra("TOPIC") ?: "Stack"
-        val topic = getTopicData(currentTopicName)
         val topicName = intent.getStringExtra("TOPIC") ?: "Stack"
         topicNameGlobal = topicName
 
