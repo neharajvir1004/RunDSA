@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.rundsa.app">
+
     <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,43 +11,53 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RunDSA"
-        android:usesCleartextTraffic="true">
-        <activity
-            android:name=".activities.TopicDetailActivity"
-            android:exported="false" />
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.RunDSA">
+
+        <!-- Splash Screen (Launcher) -->
         <activity
             android:name=".activities.SplashActivity"
-            android:exported="true"> <!-- Splash Screen (Launcher) -->
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Auth -->
+        </activity>
+
+        <!-- Auth -->
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.RegisterActivity" /> <!-- Main -->
-        <activity android:name=".activities.HomeActivity" /> <!-- Learning -->
+        <activity android:name=".activities.RegisterActivity" />
+
+        <!-- Main -->
+        <activity android:name=".activities.HomeActivity" />
+
+        <!-- Learning -->
         <activity android:name=".activities.LearnActivity" />
-        <activity android:name=".activities.QuizActivity" /> <!-- Quiz -->
+       <!-- <activity android:name=".activities.DetailActivity" />-->
+        <activity android:name=".activities.TopicDetailActivity" />
+
+        <!-- Quiz -->
+        <activity android:name=".activities.QuizActivity" />
         <activity android:name=".activities.QuizLevelActivity" />
         <activity android:name=".activities.QuizQuestionActivity" />
-        <activity android:name=".activities.QuizResultActivity" /> <!-- Practice -->
+        <activity android:name=".activities.QuizResultActivity" />
+
+        <!-- Practice -->
         <activity android:name=".activities.PracticeCodeActivity" />
-        <activity android:name=".activities.PracticeDetailActivity" /> <!-- Fun -->
-        <activity
-            android:name=".activities.FunExerciseActivity"
-            tools:ignore="Instantiatable" />
+        <activity android:name=".activities.PracticeDetailActivity" />
+
+        <!-- Fun -->
+        <activity android:name=".activities.FunExerciseActivity" />
+        <activity android:name=".activities.SortingGameActivity" />
+        <activity android:name=".activities.BinarySearchGameActivity" />
+        <activity android:name=".activities.MemoryGameActivity" />
+
         <!-- Progress -->
         <activity android:name=".activities.ProgressActivity" />
+
         <!-- Compiler -->
         <activity android:name=".activities.CompilerActivity" />
-        <!--Sorting Game-->
-        <activity android:name=".activities.SortingGameActivity" />
-        <!-- Binary Search Hunt -->
-        <activity android:name=".activities.BinarySearchGameActivity" />
-        <!-- Memory Game -->
-        <activity android:name=".activities.MemoryGameActivity"/>
+
     </application>
 
 </manifest>
