@@ -30,6 +30,7 @@ class CompilerActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+
             tvOutput.text = "Running..."
 
             lifecycleScope.launch {

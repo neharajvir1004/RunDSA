@@ -1,13 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="#F5F7FB">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fun Exercise Screen"
-        android:textSize="24sp" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- HEADER WITH IMAGE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fun Exercises"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1E3A8A"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Practice DSA with fun mini games"
+            android:textSize="15sp"
+            android:textColor="#6B7280"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- GRID BOXES -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Row 1 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Sorting Game (Pink) -->
+
+                <Button
+                    android:id="@+id/btnSortingGame"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#EC4899"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:text="🔄\nSorting Game"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Binary Search (Blue) -->
+
+                <Button
+                    android:id="@+id/btnBinarySearch"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#3B82F6"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:text="🎯\nBinary Search"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Row 2 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Memory Game (Yellow) -->
+
+                <Button
+                    android:id="@+id/btnMemoryGame"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#F59E0B"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:text="🧠\nMemory Game"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Empty space (optional future game) -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <!-- Fun Description Section -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="16dp"
+            android:background="#EEF2FF"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎮 Ready to Play?"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1E3A8A" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Practice DSA in a fun way! Swap numbers, test your memory, and challenge your logic skills. Learn faster while playing games 🚀"
+                android:textSize="14sp"
+                android:textColor="#334155"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+        <!-- Extra Motivation Section -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="#ECFEFF">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Challenge Yourself!"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#0F766E" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Improve your problem-solving skills step by step. The more you play, the sharper your logic becomes. Keep practicing and become a DSA pro 💡"
+                android:textSize="14sp"
+                android:textColor="#334155"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -3,6 +3,8 @@ package com.rundsa.app.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.RadioButton
@@ -25,52 +27,51 @@ class QuizQuestionActivity : AppCompatActivity() {
     private lateinit var option3: RadioButton
     private lateinit var option4: RadioButton
     private lateinit var nextBtn: Button
+    private lateinit var resultText: TextView
 
     private var currentIndex = 0
     private var score = 0
     private var questionList = listOf<QuizQuestionModel>()
     private var countDownTimer: CountDownTimer? = null
     private val totalTime = 30000L
+    private var isAnswered = false
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_quiz_question)
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_quiz_question)
+        val topicName = intent.getStringExtra("TOPIC") ?: ""
+        val level = intent.getStringExtra("LEVEL") ?: "Easy"
 
-            val topicName = intent.getStringExtra("TOPIC") ?: ""
-            val level = intent.getStringExtra("LEVEL") ?: "Easy"
+        questionText = findViewById(R.id.questionText)
+        questionCount = findViewById(R.id.questionCount)
+        timerText = findViewById(R.id.timerText)
+        progressBar = findViewById(R.id.progressBar)
+        radioGroup = findViewById(R.id.radioGroup)
+        option1 = findViewById(R.id.option1)
+        option2 = findViewById(R.id.option2)
+        option3 = findViewById(R.id.option3)
+        option4 = findViewById(R.id.option4)
+        nextBtn = findViewById(R.id.nextBtn)
+        resultText = findViewById(R.id.resultText)
 
-            println("TOPIC RECEIVED = $topicName")
-            println("LEVEL RECEIVED = $level")
+        questionList = getQuestions(topicName, level)
 
-            questionText = findViewById(R.id.questionText)
-            questionCount = findViewById(R.id.questionCount)
-            timerText = findViewById(R.id.timerText)
-            progressBar = findViewById(R.id.progressBar)
-            radioGroup = findViewById(R.id.radioGroup)
-            option1 = findViewById(R.id.option1)
-            option2 = findViewById(R.id.option2)
-            option3 = findViewById(R.id.option3)
-            option4 = findViewById(R.id.option4)
-            nextBtn = findViewById(R.id.nextBtn)
+        if (questionList.isEmpty()) {
+            Toast.makeText(this, "No questions found for topic: $topicName", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
 
-            questionList = getQuestions(topicName, level)
-            println("QUESTION COUNT = ${questionList.size}")
+        progressBar.max = questionList.size
+        showQuestion()
 
-            if (questionList.isEmpty()) {
-                Toast.makeText(this, "No questions found for topic: $topicName", Toast.LENGTH_LONG).show()
-                finish()
-                return
-            }
-
-            progressBar.max = questionList.size
-            showQuestion()
-
-            nextBtn.setOnClickListener {
+        nextBtn.setOnClickListener {
+            if (!isAnswered) {
                 checkAnswerAndMove()
             }
         }
-
+    }
 
     private fun showQuestion() {
         if (currentIndex >= questionList.size) {
@@ -86,8 +87,13 @@ class QuizQuestionActivity : AppCompatActivity() {
         option2.text = question.options[1]
         option3.text = question.options[2]
         option4.text = question.options[3]
-        radioGroup.clearCheck()
 
+        radioGroup.clearCheck()
+        resultText.text = ""
+        isAnswered = false
+        nextBtn.text = "Next Question"
+
+        enableOptions(true)
         startTimer()
     }
 
@@ -97,14 +103,20 @@ class QuizQuestionActivity : AppCompatActivity() {
         countDownTimer = object : CountDownTimer(totalTime, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
-                timerText.text = "Time Left: ${seconds}s"
+                timerText.text = "⏳ Time Left: ${seconds}s"
             }
 
             override fun onFinish() {
-                timerText.text = "Time Left: 0s"
-                Toast.makeText(this@QuizQuestionActivity, "Time's up!", Toast.LENGTH_SHORT).show()
-                currentIndex++
-                showQuestion()
+                timerText.text = "⏳ Time Left: 0s"
+                resultText.text = "❌ Wrong! Time's up"
+                resultText.setTextColor(resources.getColor(android.R.color.holo_red_light, theme))
+                enableOptions(false)
+                isAnswered = true
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    currentIndex++
+                    showQuestion()
+                }, 1500)
             }
         }.start()
     }
@@ -118,26 +130,44 @@ class QuizQuestionActivity : AppCompatActivity() {
         }
 
         val selectedOption = findViewById<RadioButton>(selectedId).text.toString()
-
-        if (selectedOption == questionList[currentIndex].correctAnswer) {
-            score++
-        }
+        val correctAnswer = questionList[currentIndex].correctAnswer
 
         countDownTimer?.cancel()
-        currentIndex++
-        showQuestion()
+        isAnswered = true
+        enableOptions(false)
+
+        if (selectedOption == correctAnswer) {
+            score++
+            resultText.text = "✅ Right"
+            resultText.setTextColor(resources.getColor(android.R.color.holo_green_light, theme))
+        } else {
+            resultText.text = "❌ Wrong"
+            resultText.setTextColor(resources.getColor(android.R.color.holo_red_light, theme))
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            currentIndex++
+            showQuestion()
+        }, 1500)
+    }
+
+    private fun enableOptions(enable: Boolean) {
+        option1.isEnabled = enable
+        option2.isEnabled = enable
+        option3.isEnabled = enable
+        option4.isEnabled = enable
     }
 
     private fun openResultScreen() {
-        val intent = Intent(this, QuizResultActivity::class.java)
+        val resultIntent = Intent(this, QuizResultActivity::class.java)
         val topicName = intent.getStringExtra("TOPIC") ?: "Arrays"
         val level = intent.getStringExtra("LEVEL") ?: "Easy"
 
-        intent.putExtra("SCORE", score)
-        intent.putExtra("TOTAL", questionList.size)
-        intent.putExtra("TOPIC", topicName)
-        intent.putExtra("LEVEL", level)
-        startActivity(intent)
+        resultIntent.putExtra("SCORE", score)
+        resultIntent.putExtra("TOTAL", questionList.size)
+        resultIntent.putExtra("TOPIC", topicName)
+        resultIntent.putExtra("LEVEL", level)
+        startActivity(resultIntent)
         finish()
     }
 
@@ -163,6 +193,7 @@ class QuizQuestionActivity : AppCompatActivity() {
             else -> emptyList()
         }
     }
+
     //Array
     private fun getArrayQuestions(level: String): List<QuizQuestionModel> {
         return when (level) {
