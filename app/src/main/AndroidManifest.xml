@@ -33,7 +33,6 @@
 
         <!-- Learning -->
         <activity android:name=".activities.LearnActivity" />
-       <!-- <activity android:name=".activities.DetailActivity" />-->
         <activity android:name=".activities.TopicDetailActivity" />
 
         <!-- Quiz -->

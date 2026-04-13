@@ -52,6 +52,7 @@ class TopicDetailActivity : AppCompatActivity() {
 
         currentTopicName = intent.getStringExtra("TOPIC") ?: "Stack"
         val topicName = intent.getStringExtra("TOPIC") ?: "Stack"
+        markTopicViewed(topicName)//added
         topicNameGlobal = topicName
 
         val topic = getTopicData(topicName)
@@ -67,7 +68,7 @@ class TopicDetailActivity : AppCompatActivity() {
             layoutSubtypeSection.visibility = View.VISIBLE
 
             // 🔥 MARK SUBTYPES
-            markAllSubtypesCompleted(topic.title, topic.subtypes)
+           // markAllSubtypesCompleted(topic.title, topic.subtypes)
 
             tvSubtypeHeading.text = when (topic.title) {
                 "Sorting" -> "Types of Sorting"
@@ -104,7 +105,6 @@ class TopicDetailActivity : AppCompatActivity() {
 
                 // 🔥 TRACK RUN
                 updateRunCount(topicNameGlobal)
-
                 val intent = Intent(this, PracticeCodeActivity::class.java)
                 intent.putExtra("TOPIC", currentTopicName)
                 intent.putExtra("SUBTYPE", selectedSubtypeName)
@@ -116,14 +116,15 @@ class TopicDetailActivity : AppCompatActivity() {
     // ================= FIREBASE =================
 
     private fun markTopicViewed(topic: String) {
+
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
 
-        val docId = "${user.uid}_$topic"
+        val docId = user.uid + "_" + topic
 
         val data = hashMapOf(
             "userId" to user.uid,
-            "email" to user.email,   // ✅ ADDED
+            "email" to user.email,
             "topic" to topic,
             "viewed" to true,
             "timestamp" to System.currentTimeMillis()
@@ -135,20 +136,21 @@ class TopicDetailActivity : AppCompatActivity() {
     }
 
     private fun updateRunCount(topic: String) {
+
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
 
-        val docId = "${user.uid}_$topic"
-        val docRef = db.collection("user_progress").document(docId)
+        val docRef = db.collection("user_progress")
+            .document(user.uid + "_" + topic)
 
-        docRef.get().addOnSuccessListener { document ->
-            val currentCount = document.getLong("codeRunCount") ?: 0
+        db.runTransaction { transaction ->
 
-            docRef.set(
-                mapOf(
-                    "codeRunCount" to currentCount + 1,
-                    "email" to user.email   // ✅ ADDED
-                ),
+            val snapshot = transaction.get(docRef)
+            val currentCount = snapshot.getLong("codeRunCount") ?: 0
+
+            transaction.set(
+                docRef,
+                mapOf("codeRunCount" to currentCount + 1),
                 SetOptions.merge()
             )
         }
