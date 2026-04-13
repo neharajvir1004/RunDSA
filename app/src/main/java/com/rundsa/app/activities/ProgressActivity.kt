@@ -1,23 +1,43 @@
 package com.rundsa.app.activities
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.rundsa.app.R
+import com.rundsa.app.adapters.ProgressAdapter
+import com.rundsa.app.models.ProgressModel
 
 class ProgressActivity : AppCompatActivity() {
 
-    private lateinit var resultText: TextView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
 
-        resultText = findViewById(R.id.resultText)
+        recyclerView = findViewById(R.id.progressRecycler)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         loadProgress()
+    }
+
+    // 🔥 CALCULATE PROGRESS
+    private fun calculateProgress(
+        viewed: Boolean,
+        runCount: Long,
+        subtopicsDone: Int
+    ): Int {
+
+        var progress = 0
+
+        if (viewed) progress += 30
+        if (runCount > 0) progress += 30
+        if (subtopicsDone > 0) progress += 40
+
+        return progress
     }
 
     // 🔥 Fetch data from Firebase
@@ -28,37 +48,102 @@ class ProgressActivity : AppCompatActivity() {
 
         if (user != null) {
 
+            val list = mutableListOf<ProgressModel>()
+
+            // 🔥 HEADER 1: QUIZ RESULTS
+            list.add(
+                ProgressModel(
+                    topic = "📊 Quiz Results",
+                    score = "",
+                    runs = -1,
+                    progress = -1
+                )
+            )
+
+            // ================= QUIZ RESULTS =================
             db.collection("quiz_results")
                 .whereEqualTo("userId", user.uid)
                 .get()
-                .addOnSuccessListener { documents ->
+                .addOnSuccessListener { quizDocs ->
 
-                    if (documents.isEmpty) {
-                        resultText.text = "No progress yet"
-                        return@addOnSuccessListener
+                    if (!quizDocs.isEmpty) {
+                        for (doc in quizDocs) {
+                            val topic = doc.getString("topic") ?: "Unknown"
+                            val level = doc.getString("level") ?: ""
+                            val score = doc.getLong("score") ?: 0
+                            val total = 10
+
+                            list.add(
+                                ProgressModel(
+                                    topic = "$topic ($level)",
+                                    score = "Score: $score / $total",   // ✅ FIXED HERE
+                                    runs = 0,
+                                    progress = -1   // ✅ DISABLE % FOR QUIZ
+                                )
+                            )
+                        }
                     }
 
-                    val resultBuilder = StringBuilder()
+                    // 🔥 HEADER 2: TOPIC PROGRESS
+                    list.add(
+                        ProgressModel(
+                            topic = "📘 Topic Progress",
+                            score = "",
+                            runs = -1,
+                            progress = -1
+                        )
+                    )
 
-                    for (doc in documents) {
-                        val topic = doc.getString("topic") ?: "Unknown"
-                        val level = doc.getString("level") ?: ""
-                        val score = doc.getLong("score") ?: 0
-                        //val total = doc.getLong("totalQuestions") ?: 0
-                        val total = 10   // 🔥 FORCE FIX
+                    // ================= USER PROGRESS =================
+                    db.collection("user_progress")
+                        .whereEqualTo("userId", user.uid)
+                        .get()
+                        .addOnSuccessListener { progressDocs ->
 
-                        resultBuilder.append("📘 $topic ($level)\n")
-                        resultBuilder.append("Score: $score / $total\n\n")
-                    }
+                            if (!progressDocs.isEmpty) {
 
-                    resultText.text = resultBuilder.toString()
+                                for (doc in progressDocs) {
+
+                                    val topic = doc.getString("topic") ?: "Unknown"
+                                    val viewed = doc.getBoolean("viewed") ?: false
+                                    val runCount = doc.getLong("codeRunCount") ?: 0
+                                    val subtopics = (doc.get("subtopicsCompleted") as? List<*>)?.filterIsInstance<String>() ?: emptyList()
+
+                                    val progress = calculateProgress(
+                                        viewed,
+                                        runCount,
+                                        subtopics.size
+                                    )
+
+                                    list.add(
+                                        ProgressModel(
+                                            topic = topic,
+                                            score = "",
+                                            runs = runCount,
+                                            progress = progress
+                                        )
+                                    )
+                                }
+                            }
+
+                            // 🔥 SET ADAPTER
+                            recyclerView.adapter = ProgressAdapter(list)
+                        }
+
+                        // FAILURE (USER PROGRESS)
+                        .addOnFailureListener {
+                            recyclerView.adapter = ProgressAdapter(emptyList())
+                        }
                 }
+
+                // FAILURE
                 .addOnFailureListener {
-                    resultText.text = "Error loading data"
+                    recyclerView.adapter = ProgressAdapter(emptyList())
                 }
 
         } else {
-            resultText.text = "Please login first"
+            // USER NOT LOGGED IN
+            recyclerView.adapter = ProgressAdapter(emptyList())
         }
     }
 }
