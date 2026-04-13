@@ -6,7 +6,6 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.rundsa.app.R
 
-
 class FunExerciseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,10 +15,7 @@ class FunExerciseActivity : AppCompatActivity() {
         val btnSortingGame = findViewById<Button>(R.id.btnSortingGame)
         val btnBinarySearch = findViewById<Button>(R.id.btnBinarySearch)
         val btnMemory = findViewById<Button>(R.id.btnMemoryGame)
-
-        btnMemory.setOnClickListener {
-            startActivity(Intent(this, MemoryGameActivity::class.java))
-        }
+        val btnReverse = findViewById<Button>(R.id.btnReverseGame)
 
         btnSortingGame.setOnClickListener {
             startActivity(Intent(this, SortingGameActivity::class.java))
@@ -29,7 +25,12 @@ class FunExerciseActivity : AppCompatActivity() {
             startActivity(Intent(this, BinarySearchGameActivity::class.java))
         }
 
+        btnMemory.setOnClickListener {
+            startActivity(Intent(this, MemoryGameActivity::class.java))
+        }
 
-
+        btnReverse.setOnClickListener {
+            startActivity(Intent(this, ReverseGameActivity::class.java))
+        }
     }
 }

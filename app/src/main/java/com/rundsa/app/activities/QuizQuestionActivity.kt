@@ -36,6 +36,8 @@ class QuizQuestionActivity : AppCompatActivity() {
     private val totalTime = 30000L
     private var isAnswered = false
 
+    private var currentShuffledOptions = listOf<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_question)
@@ -80,13 +82,17 @@ class QuizQuestionActivity : AppCompatActivity() {
         }
 
         val question = questionList[currentIndex]
+
         questionCount.text = "Question ${currentIndex + 1}/${questionList.size}"
         progressBar.progress = currentIndex + 1
         questionText.text = question.question
-        option1.text = question.options[0]
-        option2.text = question.options[1]
-        option3.text = question.options[2]
-        option4.text = question.options[3]
+
+        currentShuffledOptions = question.options.shuffled()
+
+        option1.text = currentShuffledOptions[0]
+        option2.text = currentShuffledOptions[1]
+        option3.text = currentShuffledOptions[2]
+        option4.text = currentShuffledOptions[3]
 
         radioGroup.clearCheck()
         resultText.text = ""
@@ -194,6 +200,7 @@ class QuizQuestionActivity : AppCompatActivity() {
         }
     }
 
+}
     //Array
     private fun getArrayQuestions(level: String): List<QuizQuestionModel> {
         return when (level) {
@@ -605,4 +612,3 @@ class QuizQuestionActivity : AppCompatActivity() {
         }
     }
 
-}

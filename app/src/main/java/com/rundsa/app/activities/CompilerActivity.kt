@@ -22,6 +22,17 @@ class CompilerActivity : AppCompatActivity() {
         val btnRun = findViewById<Button>(R.id.btnRunOnline)
         val tvOutput = findViewById<TextView>(R.id.tvOutput)
 
+        etCode.setText(
+            """
+            #include <stdio.h>
+
+            int main() {
+                printf("Hello World");
+                return 0;
+            }
+            """.trimIndent()
+        )
+
         btnRun.setOnClickListener {
             val codeInput = etCode.text.toString().trim()
 
@@ -29,7 +40,6 @@ class CompilerActivity : AppCompatActivity() {
                 Toast.makeText(this, "Enter code first", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
 
             tvOutput.text = "Running..."
 

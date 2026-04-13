@@ -9,14 +9,17 @@
     <EditText
         android:id="@+id/etCode"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="300dp"
         android:gravity="top|start"
-        android:hint="Write your C code here"
+        android:hint="Write your code here..."
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#BBBBBB"
+        android:padding="12dp"
+        android:textSize="14sp"
         android:inputType="textMultiLine"
-        android:minLines="12"
-        android:background="#EEEEEE"
-        android:padding="12dp" />
+        android:scrollbars="vertical"
+        android:overScrollMode="ifContentScrolls" />
 
     <Button
         android:id="@+id/btnRunOnline"
@@ -36,11 +39,10 @@
         android:id="@+id/tvOutput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E8F5E9"
+        android:background="#e3e4e5"
         android:padding="12dp"
         android:layout_marginTop="8dp"
-        android:text="Output will appear here" />
-
-
-
+        android:text="Output will appear here"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 </LinearLayout>

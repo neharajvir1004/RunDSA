@@ -14,178 +14,251 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="Sorting Game"
-            android:textSize="28sp"
-            android:textStyle="bold"
             android:textColor="#111827"
-            android:layout_gravity="center_horizontal" />
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort the numbers in ascending order"
-            android:textSize="15sp"
-            android:textColor="#6B7280"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="6dp"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:id="@+id/tvMoves"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Moves: 0"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#1E3A8A"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center_horizontal" />
+            android:text="Sort the 15 numbers in ascending order"
+            android:textColor="#6B7280"
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:layout_marginTop="24dp">
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvNum1"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_margin="6dp"
-                android:gravity="center"
-                android:text="5"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_num_pink" />
+                android:id="@+id/tvMoves"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="Moves: 0"
+                android:textColor="#1E3A8A"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvNum2"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_margin="6dp"
-                android:gravity="center"
-                android:text="3"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_num_purple" />
-
-            <TextView
-                android:id="@+id/tvNum3"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_margin="6dp"
-                android:gravity="center"
-                android:text="8"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_num_blue" />
-
-            <TextView
-                android:id="@+id/tvNum4"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_margin="6dp"
-                android:gravity="center"
-                android:text="1"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_num_green" />
-
-            <TextView
-                android:id="@+id/tvNum5"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_margin="6dp"
-                android:gravity="center"
-                android:text="4"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_num_orange" />
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score: 0"
+                android:textColor="#BE185D"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Swap 1 -->
+        <!-- Row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/num0" style="@style/NumberBox" />
+            <TextView android:id="@+id/num1" style="@style/NumberBox" />
+            <TextView android:id="@+id/num2" style="@style/NumberBox" />
+            <TextView android:id="@+id/num3" style="@style/NumberBox" />
+            <TextView android:id="@+id/num4" style="@style/NumberBox" />
+        </LinearLayout>
+
+        <!-- Row 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/num5" style="@style/NumberBox" />
+            <TextView android:id="@+id/num6" style="@style/NumberBox" />
+            <TextView android:id="@+id/num7" style="@style/NumberBox" />
+            <TextView android:id="@+id/num8" style="@style/NumberBox" />
+            <TextView android:id="@+id/num9" style="@style/NumberBox" />
+        </LinearLayout>
+
+        <!-- Row 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/num10" style="@style/NumberBox" />
+            <TextView android:id="@+id/num11" style="@style/NumberBox" />
+            <TextView android:id="@+id/num12" style="@style/NumberBox" />
+            <TextView android:id="@+id/num13" style="@style/NumberBox" />
+            <TextView android:id="@+id/num14" style="@style/NumberBox" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnSwap1"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="28dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:backgroundTint="#2563EB"
             android:text="Swap 1 ↔ 2"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
 
-        <!-- Swap 2 -->
         <Button
             android:id="@+id/btnSwap2"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#7C3AED"
             android:text="Swap 2 ↔ 3"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
 
-        <!-- Swap 3 -->
         <Button
             android:id="@+id/btnSwap3"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#DB2777"
             android:text="Swap 3 ↔ 4"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
 
-        <!-- Swap 4 -->
         <Button
             android:id="@+id/btnSwap4"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#0D9488"
             android:text="Swap 4 ↔ 5"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
 
-        <!-- Check Button -->
+        <Button
+            android:id="@+id/btnSwap5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#EA580C"
+            android:text="Swap 5 ↔ 6"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#2563EB"
+            android:text="Swap 6 ↔ 7"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#7C3AED"
+            android:text="Swap 7 ↔ 8"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#DB2777"
+            android:text="Swap 8 ↔ 9"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#0D9488"
+            android:text="Swap 9 ↔ 10"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#EA580C"
+            android:text="Swap 10 ↔ 11"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#2563EB"
+            android:text="Swap 11 ↔ 12"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#7C3AED"
+            android:text="Swap 12 ↔ 13"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#DB2777"
+            android:text="Swap 13 ↔ 14"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSwap14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#0D9488"
+            android:text="Swap 14 ↔ 15"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
         <Button
             android:id="@+id/btnCheck"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#16A34A"
             android:text="Check Answer"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
 
-        <!-- Reset Button -->
         <Button
             android:id="@+id/btnReset"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#EA580C"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F97316"
             android:text="Reset Game"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </ScrollView>

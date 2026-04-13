@@ -11,7 +11,8 @@ data class CodeRequest(
 )
 
 data class CodeResponse(
-    val output: String?
+    val output: String?,
+    val error: String? = null
 )
 
 interface CompilerApi {
