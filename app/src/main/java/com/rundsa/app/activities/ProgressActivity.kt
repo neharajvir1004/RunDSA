@@ -27,15 +27,13 @@ class ProgressActivity : AppCompatActivity() {
     // 🔥 CALCULATE PROGRESS
     private fun calculateProgress(
         viewed: Boolean,
-        runCount: Long,
-        subtopicsDone: Int
+        runCount: Long
     ): Int {
 
         var progress = 0
 
-        if (viewed) progress += 30
-        if (runCount > 0) progress += 30
-        if (subtopicsDone > 0) progress += 40
+        if (viewed) progress += 50
+        if (runCount > 0) progress += 50
 
         return progress
     }
@@ -67,18 +65,35 @@ class ProgressActivity : AppCompatActivity() {
                 .addOnSuccessListener { quizDocs ->
 
                     if (!quizDocs.isEmpty) {
+                        val uniqueMap = mutableMapOf<String, Pair<Long, Long>>() // key → score,total
+
                         for (doc in quizDocs) {
                             val topic = doc.getString("topic") ?: "Unknown"
                             val level = doc.getString("level") ?: ""
-                            val score = doc.getLong("score") ?: 0
-                            val total = 10
+                            val score = doc.getLong("score") ?: 0L
+                            val total = 10L
+
+                            val key = "$topic-$level"
+
+                            val existing = uniqueMap[key]
+
+                            if (existing == null || score > existing.first) {
+                                uniqueMap[key] = Pair(score, total)
+                            }
+                        }
+
+                        // 🔥 ADD TO LIST (ONLY UNIQUE)
+                        for ((key, value) in uniqueMap) {
+                            val parts = key.split("-")
+                            val topic = parts[0]
+                            val level = parts[1]
 
                             list.add(
                                 ProgressModel(
                                     topic = "$topic ($level)",
-                                    score = "Score: $score / $total",   // ✅ FIXED HERE
+                                    score = "Score: ${value.first} / ${value.second}",
                                     runs = 0,
-                                    progress = -1   // ✅ DISABLE % FOR QUIZ
+                                    progress = -1
                                 )
                             )
                         }
@@ -107,12 +122,10 @@ class ProgressActivity : AppCompatActivity() {
                                     val topic = doc.getString("topic") ?: "Unknown"
                                     val viewed = doc.getBoolean("viewed") ?: false
                                     val runCount = doc.getLong("codeRunCount") ?: 0
-                                    val subtopics = (doc.get("subtopicsCompleted") as? List<*>)?.filterIsInstance<String>() ?: emptyList()
 
                                     val progress = calculateProgress(
                                         viewed,
-                                        runCount,
-                                        subtopics.size
+                                        runCount
                                     )
 
                                     list.add(
@@ -126,11 +139,8 @@ class ProgressActivity : AppCompatActivity() {
                                 }
                             }
 
-                            // 🔥 SET ADAPTER
                             recyclerView.adapter = ProgressAdapter(list)
                         }
-
-                        // FAILURE (USER PROGRESS)
                         .addOnFailureListener {
                             recyclerView.adapter = ProgressAdapter(emptyList())
                         }

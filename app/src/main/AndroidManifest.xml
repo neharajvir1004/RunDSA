@@ -11,10 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RunDSA"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.RunDSA">
 
-        <!-- Splash (Launcher) -->
+        <!-- Splash Screen (Launcher) -->
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">
@@ -25,38 +25,38 @@
         </activity>
 
         <!-- Auth -->
-        <activity android:name=".activities.LoginActivity" android:exported="false" />
-        <activity android:name=".activities.RegisterActivity" android:exported="false" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegisterActivity" />
 
         <!-- Main -->
-        <activity android:name=".activities.HomeActivity" android:exported="false" />
+        <activity android:name=".activities.HomeActivity" />
 
         <!-- Learning -->
-        <activity android:name=".activities.LearnActivity" android:exported="false" />
-        <activity android:name=".activities.TopicDetailActivity" android:exported="false" />
+        <activity android:name=".activities.LearnActivity" />
+       <!-- <activity android:name=".activities.DetailActivity" />-->
+        <activity android:name=".activities.TopicDetailActivity" />
 
         <!-- Quiz -->
-        <activity android:name=".activities.QuizActivity" android:exported="false" />
-        <activity android:name=".activities.QuizLevelActivity" android:exported="false" />
-        <activity android:name=".activities.QuizQuestionActivity" android:exported="false" />
-        <activity android:name=".activities.QuizResultActivity" android:exported="false" />
+        <activity android:name=".activities.QuizActivity" />
+        <activity android:name=".activities.QuizLevelActivity" />
+        <activity android:name=".activities.QuizQuestionActivity" />
+        <activity android:name=".activities.QuizResultActivity" />
 
         <!-- Practice -->
-        <activity android:name=".activities.PracticeCodeActivity" android:exported="false" />
-        <activity android:name=".activities.PracticeDetailActivity" android:exported="false" />
+        <activity android:name=".activities.PracticeCodeActivity" />
+        <activity android:name=".activities.PracticeDetailActivity" />
 
         <!-- Fun -->
-        <activity android:name=".activities.FunExerciseActivity" android:exported="false" />
-        <activity android:name=".activities.SortingGameActivity" android:exported="false" />
-        <activity android:name=".activities.BinarySearchGameActivity" android:exported="false" />
-        <activity android:name=".activities.MemoryGameActivity" android:exported="false" />
-        <activity android:name=".activities.ReverseGameActivity" android:exported="false" />
+        <activity android:name=".activities.FunExerciseActivity" />
+        <activity android:name=".activities.SortingGameActivity" />
+        <activity android:name=".activities.BinarySearchGameActivity" />
+        <activity android:name=".activities.MemoryGameActivity" />
 
         <!-- Progress -->
-        <activity android:name=".activities.ProgressActivity" android:exported="false" />
+        <activity android:name=".activities.ProgressActivity" />
 
         <!-- Compiler -->
-        <activity android:name=".activities.CompilerActivity" android:exported="false" />
+        <activity android:name=".activities.CompilerActivity" />
 
     </application>
 
