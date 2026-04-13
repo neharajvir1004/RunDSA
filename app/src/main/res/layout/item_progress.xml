@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp">
+
+    <TextView
+        android:id="@+id/tvTopic"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp"  > <!-- 🔥 REDUCED FROM 16dp -->
-
-
-    <TextView
-    android:id="@+id/tvTopic"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    android:layout_marginBottom="2dp"/>   <!-- 🔥 SMALL GAP -->
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:includeFontPadding="false"/>
 
     <TextView
-    android:id="@+id/tvRuns"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="2dp"/>   <!-- 🔥 SMALL GAP -->
+        android:id="@+id/tvRuns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"/>
 
     <TextView
-    android:id="@+id/tvProgress"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
+        android:id="@+id/tvProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"/>
 </LinearLayout>
