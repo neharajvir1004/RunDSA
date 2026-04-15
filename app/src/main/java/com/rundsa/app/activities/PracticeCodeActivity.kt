@@ -297,11 +297,16 @@ int main(){
     }
 
     private fun openPracticeDetail(item: PracticeTopicModel) {
-        val intent = Intent(this, PracticeDetailActivity::class.java)
-        intent.putExtra("TITLE", item.title)
-        intent.putExtra("CODE", item.code)
-        intent.putExtra("OUTPUT", item.output)
-        startActivity(intent)
-        finish()
-    }
+            val intent = Intent(this, PracticeDetailActivity::class.java)
+
+            // 🔥 ADD THIS LINE (IMPORTANT)
+            intent.putExtra("TOPIC_NAME", item.title)
+
+            intent.putExtra("TITLE", item.title)
+            intent.putExtra("CODE", item.code)
+            intent.putExtra("OUTPUT", item.output)
+
+            startActivity(intent)
+            finish()
+        }
 }

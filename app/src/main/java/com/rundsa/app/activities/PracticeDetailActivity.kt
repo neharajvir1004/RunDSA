@@ -28,9 +28,9 @@ class PracticeDetailActivity : AppCompatActivity() {
         // Set UI
         titleText.text = title
         tvCode.text = code
-        tvOutput.visibility = View.GONE   // Hide initially
+        tvOutput.visibility = View.GONE
 
-        // Run button → show STATIC output
+        // ✅ ONLY KEEP THIS (no Firebase logic)
         btnRun.setOnClickListener {
             tvOutput.visibility = View.VISIBLE
             tvOutput.text = output
