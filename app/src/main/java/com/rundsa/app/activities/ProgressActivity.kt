@@ -1,6 +1,7 @@
 package com.rundsa.app.activities
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.rundsa.app.R
 import com.rundsa.app.adapters.ProgressAdapter
 import com.rundsa.app.models.ProgressModel
 
+
 class ProgressActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
@@ -18,8 +20,16 @@ class ProgressActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
 
+        val backBtn = findViewById<ImageView>(R.id.backBtn)
+
+        backBtn.setOnClickListener {
+            onBackPressed()
+        }
+
         recyclerView = findViewById(R.id.progressRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setPadding(0, 4, 0, 4)
+        recyclerView.clipToPadding = false
 
         loadProgress()
     }
@@ -50,48 +60,42 @@ class ProgressActivity : AppCompatActivity() {
 
             // 🔥 HEADER 1: QUIZ RESULTS
             list.add(
-                ProgressModel(
-                    topic = "📊 Quiz Results",
-                    score = "",
-                    runs = -1,
-                    progress = -1
-                )
+                ProgressModel("📊 Quiz Results", "", -1, -1)
             )
 
-            // ================= QUIZ RESULTS =================
             db.collection("quiz_results")
                 .whereEqualTo("userId", user.uid)
                 .get()
                 .addOnSuccessListener { quizDocs ->
 
                     if (!quizDocs.isEmpty) {
-                        val uniqueMap = mutableMapOf<String, Pair<Long, Long>>() // key → score,total
+
+                        val bestScoreMap = mutableMapOf<String, Long>()
 
                         for (doc in quizDocs) {
                             val topic = doc.getString("topic") ?: "Unknown"
                             val level = doc.getString("level") ?: ""
                             val score = doc.getLong("score") ?: 0L
-                            val total = 10L
 
                             val key = "$topic-$level"
 
-                            val existing = uniqueMap[key]
+                            val existing = bestScoreMap[key]
 
-                            if (existing == null || score > existing.first) {
-                                uniqueMap[key] = Pair(score, total)
+                            if (existing == null || score > existing) {
+                                bestScoreMap[key] = score
                             }
                         }
 
-                        // 🔥 ADD TO LIST (ONLY UNIQUE)
-                        for ((key, value) in uniqueMap) {
+// 🔥 ADD BEST SCORES ONLY
+                        for ((key, bestScore) in bestScoreMap) {
                             val parts = key.split("-")
                             val topic = parts[0]
                             val level = parts[1]
 
                             list.add(
                                 ProgressModel(
-                                    topic = "$topic ($level)",
-                                    score = "Score: ${value.first} / ${value.second}",
+                                    topic = "$topic ($level)",   // ✅ correct topic
+                                    score = "Score: $bestScore / 10",  // ✅ correct format
                                     runs = 0,
                                     progress = -1
                                 )
@@ -101,15 +105,9 @@ class ProgressActivity : AppCompatActivity() {
 
                     // 🔥 HEADER 2: TOPIC PROGRESS
                     list.add(
-                        ProgressModel(
-                            topic = "📘 Topic Progress",
-                            score = "",
-                            runs = -1,
-                            progress = -1
-                        )
+                        ProgressModel("📘 Topic Progress", "", -1, -1)
                     )
 
-                    // ================= USER PROGRESS =================
                     db.collection("user_progress")
                         .whereEqualTo("userId", user.uid)
                         .get()
@@ -139,21 +137,26 @@ class ProgressActivity : AppCompatActivity() {
                                 }
                             }
 
+                            // ✅ FINAL ADAPTER HERE
                             recyclerView.adapter = ProgressAdapter(list)
                         }
+
                         .addOnFailureListener {
                             recyclerView.adapter = ProgressAdapter(emptyList())
                         }
                 }
 
-                // FAILURE
                 .addOnFailureListener {
                     recyclerView.adapter = ProgressAdapter(emptyList())
                 }
 
         } else {
-            // USER NOT LOGGED IN
             recyclerView.adapter = ProgressAdapter(emptyList())
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadProgress()
     }
 }
