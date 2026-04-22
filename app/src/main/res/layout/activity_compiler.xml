@@ -44,5 +44,5 @@
         android:layout_marginTop="8dp"
         android:text="Output will appear here"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 </LinearLayout>

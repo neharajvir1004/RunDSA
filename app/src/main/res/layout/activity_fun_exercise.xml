@@ -7,145 +7,173 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fun Exercises"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#1E3A8A"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Practice DSA with fun mini games"
-            android:textSize="15sp"
-            android:textColor="#6B7280"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal" />
-
-        <!-- Row 1 -->
-        <LinearLayout
+        <!-- HEADER -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="70dp"
+            android:background="#1E3A8A"
+            android:padding="12dp"
+            android:elevation="6dp">
 
-            <Button
-                android:id="@+id/btnSortingGame"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:backgroundTint="#EC4899"
-                android:text="Sorting Game"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow"
+                android:rotation="180"
+                android:layout_centerVertical="true"
+                android:contentDescription="Back" />
 
-            <Button
-                android:id="@+id/btnBinarySearch"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:backgroundTint="#3B82F6"
-                android:text="Binary Search"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- Row 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnMemoryGame"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:backgroundTint="#F59E0B"
-                android:text="Memory Game"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnReverseGame"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:backgroundTint="#8B5CF6"
-                android:text="Reverse Game"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- Description 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:background="#EEF2FF">
-
+            <!-- Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🎮 Ready to Play?"
-                android:textSize="18sp"
+                android:text="Fun Exercises"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#1E3A8A" />
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Practice DSA in a fun way! Swap numbers, test your memory, search smartly, and reverse sequences while playing."
-                android:textSize="14sp"
-                android:textColor="#334155"
-                android:layout_marginTop="8dp" />
-        </LinearLayout>
-
-        <!-- Description 2 -->
+        <!-- CONTENT -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
-            android:padding="16dp"
             android:orientation="vertical"
-            android:background="#ECFEFF">
+            android:padding="20dp">
 
+            <!-- Subtitle -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🔥 Challenge Yourself!"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#0F766E" />
+                android:text="Practice DSA with fun mini games"
+                android:textSize="15sp"
+                android:textColor="#6B7280"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal" />
 
-            <TextView
+            <!-- Row 1 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="The more you play, the better your logic becomes. Keep practicing and make DSA easier, faster, and more fun."
-                android:textSize="14sp"
-                android:textColor="#334155"
-                android:layout_marginTop="8dp" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSortingGame"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#EC4899"
+                    android:text="Sorting Game"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnBinarySearch"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#3B82F6"
+                    android:text="Binary Search"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Row 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnMemoryGame"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#F59E0B"
+                    android:text="Memory Game"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnReverseGame"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#8B5CF6"
+                    android:text="Reverse Game"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Info Box -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
+                android:orientation="vertical"
+                android:background="#EEF2FF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎮 Ready to Play?"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E3A8A" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Practice DSA in a fun way! Swap numbers, test your memory, search smartly, and reverse sequences while playing."
+                    android:textSize="14sp"
+                    android:textColor="#334155"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Description 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp"
+                android:padding="16dp"
+                android:orientation="vertical"
+                android:background="#ECFEFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔥 Challenge Yourself!"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F766E" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The more you play, the better your logic becomes. Improve speed, accuracy, and problem-solving skills while enjoying DSA concepts in a fun way."
+                    android:textSize="14sp"
+                    android:textColor="#334155"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -302,6 +302,6 @@ int main(){
         intent.putExtra("CODE", item.code)
         intent.putExtra("OUTPUT", item.output)
         startActivity(intent)
-        finish()
+
     }
 }

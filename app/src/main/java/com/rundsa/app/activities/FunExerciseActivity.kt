@@ -3,6 +3,7 @@ package com.rundsa.app.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.rundsa.app.R
 
@@ -11,6 +12,12 @@ class FunExerciseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fun_exercise)
+
+        // Back Button
+        val backBtn = findViewById<ImageView>(R.id.backBtn)
+        backBtn.setOnClickListener {
+            finish()
+        }
 
         val btnSortingGame = findViewById<Button>(R.id.btnSortingGame)
         val btnBinarySearch = findViewById<Button>(R.id.btnBinarySearch)
